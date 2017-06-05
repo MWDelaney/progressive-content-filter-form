@@ -1,0 +1,22 @@
+{
+  "name": "mwdelaney/progressive-content-filter-form",
+  "description": "",
+  "keywords": ["wordpress", "plugin", "content filter", "form"],
+  "homepage": "https://github.com/MWDelaney/progressive-content-filter-form",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Michael W. Delaney",
+      "email": "michael@michaeldelaney.me"
+		}
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=5.3.2",
+		"gamajo/template-loader": "^1.2.0",
+		"jjgrainger/posttypes": "^1.1.2"
+  },
+	"autoload": {
+    "psr-4": { "MWD\\ProgressiveContentFilterForm\\": "app/" }
+  }
+}
