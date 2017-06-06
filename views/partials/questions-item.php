@@ -6,13 +6,13 @@
 	<?php endif; ?>
 
 	<?php $term = get_sub_field('pcff_question'); ?>
-	<select class="pcff-question-item-element" title="..." name="<?=$term->term_id?>">
+	<select class="pcff-question-item-element" title="..." name="<?=$term?>">
 			<option value=""></option>
 			<?php
 					$answers = get_terms( 'pcff_questions', array( 'child_of' => $term, 'hide_empty' => 0 ));
 					foreach ( $answers as $answer ):
 			?>
-					<option value="<?=$answer->term_id;?>"><?=$answer->name;?></option>',
+					<option value="<?=$answer->term_id;?>"><?=$answer->name;?></option>
 			<?php endforeach; ?>
 	</select>
 

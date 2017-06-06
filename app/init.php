@@ -33,6 +33,7 @@ class Init {
 		// Set up contextual data for templates
 		add_action('pcff-before-questions', array($this, 'questions_context') );
 		add_action('pcff-before-questions-item', array($this, 'questions_item_context') );
+		add_action('pcff-before-results', array($this, 'results_context') );
 
 		// Enqueue script on necessary pages
 		add_action('wp_enqueue_scripts', array( $this, 'front_end_scripts' ) );
@@ -81,48 +82,140 @@ class Init {
 	}
 
 
-		/**
-		* Set template context for questions group
-		*
-		* @return string string of classes
-		*/
-		function questions_context() {
-			// Initialize the templates class
-			$templates = new \MWD\ProgressiveContentFilterForm\Templates;
-			// Set the default classes for elements
-			$class_basename = 'pcff-questions';
-			$classes    = array();
-			$classes[]  = $class_basename;
-			$classes = apply_filters( 'pcff_set_questions_classes', $classes );
-			// Set up template context array
-			$context  = array();
-			$context['template'] = $templates;
-			$context['classes'] = esc_attr(trim(implode(' ', $classes)));
-			$context['answers'] = (isset($_POST['pcff-answers'])) ? $_POST['pcff-answers'] : null;
-			// Set template data
-			$templates->set_template_data( $context, 'context' );
-		}
+	/**
+	* Set template context for questions group
+	*
+	* @return string string of classes
+	*/
+	function questions_context() {
+
+		// Initialize the templates class
+		$templates = new \MWD\ProgressiveContentFilterForm\Templates;
+
+		// Get answer categories if set
+		$answers = (isset($_POST['pcff-answers'])) ? $_POST['pcff-answers'] : null;
+
+		// Initialize CSS classes array
+		$classes = array();
+
+		// Default class for answers div
+		$classes[]  = 'pcff-questions';
+
+		// Apply filter to set additional classes
+		$classes = apply_filters( 'pcff_set_questions_classes', $classes );
+
+		// Set up template context array
+		$context  = array();
 
 		/**
-		* Set template context for question single
-		*
-		* @return string string of classes
-		*/
-		function questions_item_context() {
-			// Initialize the templates class
-			$templates = new \MWD\ProgressiveContentFilterForm\Templates;
-			// Set the default classes for elements
-			$class_basename = 'pcff-questions-item';
-			$classes    = array();
-			$classes[]  = $class_basename;
-			$classes = apply_filters( 'pcff_set_questions_item_classes', $classes );
-			// Set up template context array
-			$context  = array();
-			$context['template'] = $templates;
-			$context['classes'] = esc_attr(trim(implode(' ', $classes)));
-			// Set template data
-			$templates->set_template_data( $context, 'context' );
-		}
+		 * Set up template context
+		 */
+
+		// Templates instance
+		$context['template'] = $templates;
+
+		// CSS classes
+		$context['classes'] = esc_attr(trim(implode(' ', $classes)));
+
+		// Answer category IDs array
+		$context['answers'] = $answers;
+
+		// Set template data
+		$templates->set_template_data( $context, 'context' );
+	}
+
+
+	/**
+	* Set template context for questions group
+	*
+	* @return string string of classes
+	*/
+	function results_context() {
+
+		// Initialize the templates class
+		$templates = new \MWD\ProgressiveContentFilterForm\Templates;
+
+		// Get answer categories if set
+		$answers = (isset($_POST['pcff-answers'])) ? $_POST['pcff-answers'] : null;
+
+		// Initialize CSS classes array
+		$classes = array();
+
+		// Default class for answers div
+		$classes[]  = 'pcff-results';
+
+		// Apply filter to set additional classes
+		$classes = apply_filters( 'pcff_set_results_classes', $classes );
+
+		// Set up template context array
+		$context  = array();
+
+		// Answers category query arguments
+		$args = array(
+			'post_type' => apply_filters('pcff_types', 'post'),
+			'posts_per_page' => -1,
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'pcff_questions',
+					'field' => 'id',
+					'terms' => explode(',', rtrim($answers, ',')),
+					'operator' => apply_filters('pcff_operator', 'AND')
+				)
+			)
+		);
+
+		/**
+		 * Set up template context
+		 */
+
+		// Templates instance
+		$context['template'] = $templates;
+
+		// CSS classes
+		$context['classes'] = esc_attr(trim(implode(' ', $classes)));
+
+		// Answer category IDs array
+		$context['answers'] = $answers;
+
+		// Answer query arguments
+		$context['args'] = $args;
+
+		// Set template data
+		$templates->set_template_data( $context, 'context' );
+	}
+
+
+
+	/**
+	* Set template context for question single
+	*
+	* @return string string of classes
+	*/
+	function questions_item_context() {
+		// Initialize the templates class
+		$templates = new \MWD\ProgressiveContentFilterForm\Templates;
+
+		// Initialize CSS classes array
+		$classes    = array();
+
+		// Set default class for question items
+		$classes[]  = 'pcff-questions-item';
+
+		// Apply filter to set additional classes
+		$classes = apply_filters( 'pcff_set_questions_item_classes', $classes );
+
+		// Set up template context array
+		$context  = array();
+
+		// Templates instance
+		$context['template'] = $templates;
+
+		// CSS classes
+		$context['classes'] = esc_attr(trim(implode(' ', $classes)));
+
+		// Set template data
+		$templates->set_template_data( $context, 'context' );
+	}
 
 
 }
