@@ -10,7 +10,7 @@
 
 	<div class="pcff-questions-item">
 			<input class="pcff-answers" type="hidden" name="pcff-answers" value="">
-			<button class="btn btn-secondary btn-lg" type="submit"><?php _e('Submit'); ?></button>
+			<button title="Submit" id="pcff-submit" class="btn btn-secondary btn-lg" type="submit"><?php _e('Submit'); ?></button>
 	</div>
 
 </form>

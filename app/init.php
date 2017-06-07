@@ -70,8 +70,8 @@ class Init {
 			if(have_rows('pcff_questions')) {
 				$content_before     = '';
 				$content_after      = '';
-				$content_before     = (!empty($content)) ? apply_filters('pcff_content_before', $content_before) : '';
-				$content_after      = (!empty($content)) ? apply_filters('pcff_content_after', $content_after) : '';
+				$content_before     = apply_filters('pcff_content_before', $content_before);
+				$content_after      = apply_filters('pcff_content_after', $content_after);
 				$content = $content_before . $content . $content_after;
 				return $content;
 			} else {
