@@ -18,6 +18,7 @@ $tax_names = [
 $tax_options = [
 	'hierarchical' => true,
 	'publicly_queryable' => false,
+	'meta_box_cb' => '\\MWD\\ProgressiveContentFilterForm\\hierarchical_post_questions_meta_box',
 ];
 
 // Apply the taxonomy to the initialized post type
