@@ -5,6 +5,7 @@
 		</span>
 	<?php endif; ?>
 	<?php $term = get_term(get_sub_field('pcff_question')); ?>
+	<span class="pcff-control">
 	<select class="pcff-question-item-element" title="<?=$term->name?>" name="<?=$term->name?>">
 		<option data-hidden="true" value="">...</option>
 			<?php
@@ -14,8 +15,8 @@
 					<option value="<?=$answer->term_id;?>"><?=$answer->name;?></option>
 			<?php endforeach; ?>
 	</select>
-
-
+	</span>
+	
 	<?php if(get_sub_field('text_after')): ?>
 		<span class="pcff-text-after">
 			<?php the_sub_field('text_after'); ?>
