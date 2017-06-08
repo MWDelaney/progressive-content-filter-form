@@ -9,7 +9,7 @@
 	<?php do_action('pcff-after-questions-item'); ?>
 
 
-		<li class="pcff-questions-item">
+		<li class="pcff-questions-item pcff-questions-item-submit">
 				<input class="pcff-answers" type="hidden" name="pcff-answers" value="">
 				<button title="Submit" id="pcff-submit" class="btn btn-secondary btn-lg" type="submit"><?php _e('Submit'); ?></button>
 		</li>
