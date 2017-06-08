@@ -199,7 +199,7 @@ class Init {
 		$classes    = array();
 
 		// Set default class for question items
-		$classes[]  = 'pcff-questions-item';
+		$classes[]  = 'pcff-questions-item pcff-questions-item-question';
 
 		// Apply filter to set additional classes
 		$classes = apply_filters( 'pcff_set_questions_item_classes', $classes );
