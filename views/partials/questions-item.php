@@ -1,4 +1,4 @@
-<div class="<?=$context->classes?>">
+<li class="<?=$context->classes?>">
 	<?php if(get_sub_field('text_before')): ?>
 		<span class="pcff-text-before">
 			<?php the_sub_field('text_before'); ?>
@@ -21,4 +21,4 @@
 			<?php the_sub_field('text_after'); ?>
 		</span>
 	<?php endif; ?>
-</div>
+</li>
