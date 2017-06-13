@@ -1,7 +1,7 @@
 <?php $pcff_query = new WP_Query( $context->args ); if( $pcff_query->have_posts() ) : ?>
-<ul>
+<ul class="results-list">
 		<?php while( $pcff_query->have_posts() ) : $pcff_query->the_post(); ?>
-		<li class="results-item">
+		<li class="results-list-item">
 			<?php
 				do_action('pcff-before-result');
 				$context->template->get_template_part( 'questions-results', 'item' );
