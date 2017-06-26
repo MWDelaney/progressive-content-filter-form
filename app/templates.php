@@ -1,7 +1,7 @@
 <?php
 namespace MWD\ProgressiveContentFilterForm;
 /**
- * Template loader for ACF Flexible Content Blocks.
+ * Template loader.
  *
  * Only need to specify class properties here.
  *
